@@ -26,15 +26,10 @@ func LevenshteinDistance(a, b string) int {
 		dp[i] = make([]int, bLen+1)
 	}
 
-	for i := 0; i <= aLen; i++ {
-		dp[i][0] = i
-	}
-	for j := 0; j <= bLen; j++ {
-		dp[0][j] = j
-	}
-
 	for i := 1; i <= aLen; i++ {
+		dp[i][0] = i
 		for j := 1; j <= bLen; j++ {
+			dp[0][j] = j
 			dpTempPrevious := dp[i-1]
 			dpTemp := dp[i]
 			if a[i-1] == b[j-1] {
