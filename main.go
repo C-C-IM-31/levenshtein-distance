@@ -1,46 +1,24 @@
 package main
 
-//func LevenshteinDistance(a, b string) int {
-//	if len(a) == 0 {
-//		return len(b)
-//	}
-//	if len(b) == 0 {
-//		return len(a)
-//	}
-//
-//	x := LevenshteinDistance(a, b[1:]) + 1
-//	y := LevenshteinDistance(a[1:], b) + 1
-//	z := LevenshteinDistance(a[1:], b[1:])
-//	if a[0] != b[0] {
-//		z++
-//	}
-//
-//	return min(x, y, z)
-//}
-
 func LevenshteinDistance(a, b string) int {
-	aLen, bLen := len(a), len(b)
-
-	prevRow := make([]int, bLen+1)
-	currRow := make([]int, bLen+1)
-
-	for index := range prevRow {
-		prevRow[index] = index
+	rows, cols := len(a), len(b)
+	previosRow := make([]int, cols + 1)
+	currentRow := make([]int, cols + 1)
+	for index := range cols {
+		previosRow[index] = index
 	}
-
-	for i := 1; i <= aLen; i++ {
-		currRow[0] = i
-		for j := 1; j <= bLen; j++ {
-			prevRowTemp := prevRow[j-1]
-			if a[i-1] == b[j-1] {
-				currRow[j] = prevRowTemp
-			} else {
-				currRow[j] = min(currRow[j-1]+1, prevRow[j]+1, prevRowTemp+1)
+	for i := 1; i < rows + 1; i++ {
+		currentRow[0] = i
+		for j := 1; j < cols + 1; j++ {
+			first := currentRow[j - 1] + 1
+			second := previosRow[j] + 1
+			third := previosRow[j - 1]
+			if a[i-1] != b[j-1] {
+				third += 1
 			}
+			currentRow[j] = min(first, second, third)
 		}
-
-		copy(prevRow, currRow)
+		copy(previosRow, currentRow)
 	}
-
-	return currRow[bLen]
+	return currentRow[cols]
 }
