@@ -1,30 +1,33 @@
 package main
 
-func LevenshteinDistance(a, b string) int {
-	aLen, bLen := len(a), len(b)
-
-	dp := make([][]int, aLen+1)
-	for i := range dp {
-		dp[i] = make([]int, bLen+1)
+func get(matrix [][]int, row, col int) int {
+	if row == 0 && col == 0 {
+		return 0
 	}
+	if row == 0 && col > 0 {
+		return col
+	}
+	if col == 0 && row > 0 {
+		return row
+	}
+	return matrix[row - 1][col - 1]
+}
 
-	for i := 1; i <= aLen; i++ {
-		dp[i][0] = i
-		for j := 1; j <= bLen; j++ {
-			dp[0][j] = j
-			dpTempPrevious := dp[i-1]
-			dpTemp := dp[i]
-			if a[i-1] == b[j-1] {
-				dpTemp[j] = dpTempPrevious[j-1]
-			} else {
-				dpTemp[j] = 1 + min(
-					dpTemp[j-1],
-					dpTempPrevious[j],
-					dpTempPrevious[j-1],
-				)
+func LevenshteinDistance(a, b string) int {
+	rows, cols := len(a), len(b)
+	matrix := make([][]int, rows)
+	for i := 1; i < rows + 1; i++ {
+		row := make([]int, cols)
+		matrix[i - 1] = row
+		for j := 1; j < cols + 1; j++ {
+			first := get(matrix, i, j - 1) + 1
+			second := get(matrix, i - 1, j) + 1
+			third := get(matrix, i - 1, j - 1)
+			if a[i - 1] != b[j - 1] {
+				third += 1
 			}
+			row[j - 1] = min(first, second, third)
 		}
 	}
-
-	return dp[aLen][bLen]
+	return get(matrix, rows, cols)
 }
