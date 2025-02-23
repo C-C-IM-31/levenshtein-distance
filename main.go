@@ -13,14 +13,14 @@ func calculate(a, b string) int {
 	if len(b) == 0 {
 		return len(a)
 	}
-	if (a[0] == b[0]) {
+	if a[0] == b[0] {
 		return LevenshteinDistance(a[1:], b[1:])
 	}
-	atail := a[1:]
-	btail := b[1:]
-	first := LevenshteinDistance(atail, b)
-	second := LevenshteinDistance(a, btail)
-	third := LevenshteinDistance(atail, btail)
+	aTail := a[1:]
+	bTail := b[1:]
+	first := LevenshteinDistance(aTail, b)
+	second := LevenshteinDistance(a, bTail)
+	third := LevenshteinDistance(aTail, bTail)
 	return min(first, second, third) + 1
 }
 
