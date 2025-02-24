@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -54,12 +53,4 @@ func BenchmarkLevenshteinDistanceFullMatrix(b *testing.B) {
 			}
 		}
 	})
-}
-
-func ExampleLevenshteinDistanceFullMatrix() {
-	fmt.Println(LevenshteinDistanceFullMatrix("abc", "adc"))
-}
-
-func main() {
-	ExampleLevenshteinDistanceFullMatrix()
 }

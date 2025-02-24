@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -54,12 +53,4 @@ func BenchmarkLevenshteinDistance(b *testing.B) {
 			}
 		}
 	})
-}
-
-func ExampleLevenshteinDistance() {
-	fmt.Println(LevenshteinDistance("abc", "adc"))
-}
-
-func main() {
-	ExampleLevenshteinDistance()
 }

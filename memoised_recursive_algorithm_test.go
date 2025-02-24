@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -54,12 +53,4 @@ func BenchmarkLevenshteinDistanceMemoised(b *testing.B) {
 			}
 		}
 	})
-}
-
-func ExampleLevenshteinDistanceMemoised() {
-	fmt.Println(LevenshteinDistanceMemoised("abc", "adc"))
-}
-
-func main() {
-	ExampleLevenshteinDistanceMemoised()
 }
