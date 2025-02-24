@@ -24,7 +24,7 @@ func calculate(a, b string) int {
 	return min(first, second, third) + 1
 }
 
-func LevenshteinDistance(a, b string) int {
+func LevenshteinDistanceMemoised(a, b string) int {
 	hash := generateKey(a, b)
 	value, exists := cache[hash]
 	if exists {

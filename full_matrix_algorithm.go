@@ -13,7 +13,7 @@ func get(matrix [][]int, row, col int) int {
 	return matrix[row-1][col-1]
 }
 
-func LevenshteinDistance(a, b string) int {
+func LevenshteinDistanceFullMatrix(a, b string) int {
 	rows, cols := len(a), len(b)
 	matrix := make([][]int, rows)
 	for i := 1; i < rows+1; i++ {

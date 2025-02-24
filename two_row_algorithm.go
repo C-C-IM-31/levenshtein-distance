@@ -1,6 +1,6 @@
 package main
 
-func LevenshteinDistance(a, b string) int {
+func LevenshteinDistanceTwoRows(a, b string) int {
 	rows, cols := len(a), len(b)
 	previousRow := make([]int, cols+1)
 	currentRow := make([]int, cols+1)
