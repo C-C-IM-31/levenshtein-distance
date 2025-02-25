@@ -7,19 +7,19 @@ This repository contains four implementations of the algorithm along with tests 
 - Algorithm utilizing two rows approach
 
   ### Run tests and benchmarks locally:
-  1. Clone project
+  - Clone project
   ```bash
   git clone https://github.com/C-C-IM-31/levenshtein-distance.git
   ```
-  2. Navigate to project folder
+  - Navigate to project folder
   ```bash
   cd levenshtein-distance
   ```
-  3. Run tests
+  - Run tests
   ```bash
   go test
   ```
-  5. Run benchmarks
+  - Run benchmarks
   ```bash
   go test -bench .
   ```
