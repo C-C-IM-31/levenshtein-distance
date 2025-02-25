@@ -32,25 +32,6 @@ func TestLevenshteinDistanceFullMatrix(t *testing.T) {
 }
 
 func BenchmarkLevenshteinDistanceFullMatrix(b *testing.B) {
-	b.Run("short", func(b *testing.B) {
-		for b.Loop() {
-			if got := LevenshteinDistanceFullMatrix("abc", "def"); got == 0 {
-				b.Error("non-zero distance")
-			}
-		}
-	})
-	b.Run("medium", func(b *testing.B) {
-		for b.Loop() {
-			if got := LevenshteinDistanceFullMatrix("abcedf", "defabc"); got == 0 {
-				b.Error("non-zero distance")
-			}
-		}
-	})
-	b.Run("longer", func(b *testing.B) {
-		for b.Loop() {
-			if got := LevenshteinDistanceFullMatrix("abcedfabcedf", "vbcedfabcedf"); got == 0 {
-				b.Error("non-zero distance")
-			}
-		}
-	})
+	BenchTestRun(b, LevenshteinDistanceFullMatrix, Iterations)
+
 }
